@@ -1,0 +1,186 @@
+MONDAY.COM MLOPS INTERVIEW - QUICK REFERENCE CHEAT SHEET
+
+=== KEY COMPANY FACTS ===
+• ~250K customers worldwide, multi-region (US, EU) SaaS platform
+• Multi-region architecture: separate clusters per region for data residency
+• ~120+ microservices on Kubernetes (EKS on AWS)
+• Stack: TypeScript/Node.js, Python, Terraform, ArgoCD, Codefresh CI
+• Observability: Datadog, Coralogix, Prometheus, Grafana
+• Built internal platforms: Sphera (dev platform), Ensemble (Terraform CI), Morphex (AI refactoring)
+• AI focus: AI Sidekick, AI Blocks, MCP framework for agents
+
+=== INTERVIEWER: JAKUB SOKÓŁ ===
+• Role: DevOps Engineer, Observability Team
+• Certifications: KCNA, CKA, CKS, KCSA, Kubestronaut, AWS SA Associate
+• Focus Areas: Kubernetes security, observability, cloud-native tools, monitoring systems
+• Expect questions on: K8s patterns, security hardening, monitoring/alerting, incident response
+
+=== YOUR KEY TALKING POINTS ===
+
+1. KUBERNETES EXPERTISE
+   - Multi-tenant isolation: namespaces, network policies, RBAC, resource quotas
+   - Autoscaling: HPA (CPU/custom metrics), VPA, Cluster Autoscaler, Karpenter
+   - Security: Pod Security Standards, IRSA, image scanning, secrets management
+   - GPU scheduling: node selectors, taints/tolerations, device plugins
+
+2. ML MODEL SERVING
+   - Options: KServe, Seldon, custom FastAPI/Flask services
+   - Batching: dynamic batching for throughput optimization
+   - Caching: LRU cache for tokenization, Redis for feature stores
+   - Scaling: scale-to-zero vs warm pools trade-offs
+
+3. OBSERVABILITY FOR ML
+   - Metrics: latency (p50/p95/p99), error rate, throughput, prediction distribution
+   - Logging: structured logs with trace IDs, account IDs, confidence scores
+   - Tracing: OpenTelemetry for distributed traces
+   - Model-specific: drift detection, accuracy monitoring, feature statistics
+   - Tools: Prometheus metrics, Datadog APM, Grafana dashboards
+
+4. CI/CD FOR ML
+   - GitOps: ArgoCD with Argo Rollouts for canary deployments
+   - Testing: unit tests, integration tests, model validation, performance benchmarks
+   - Canary strategy: 5% -> 25% -> 50% -> 100% with automated rollback
+   - Rollback triggers: error rate spikes, latency degradation, accuracy drops
+
+5. COST OPTIMIZATION
+   - Autoscaling: scale-to-zero during off-hours, HPA based on QPS
+   - Spot instances: 70% savings for non-critical or fault-tolerant workloads
+   - Savings Plans: commit baseline capacity for 30-50% discount
+   - Model optimization: FP16 quantization, distillation, batching
+   - Right-sizing: match instance types to workload requirements
+
+6. SECURITY & COMPLIANCE
+   - Multi-tenant isolation: account-scoped data access, JWT validation
+   - Encryption: TLS in transit, KMS at rest
+   - Image security: scanning (Trivy), signing (Cosign), SBOM generation
+   - Secrets: AWS Secrets Manager, Sealed Secrets, rotation policies
+   - RBAC: least privilege, service accounts with IRSA
+
+=== SYSTEM DESIGN FRAMEWORK ===
+
+For any system design question, follow this structure:
+1. CLARIFY REQUIREMENTS
+   - Scale: QPS, users, data volume
+   - Latency: real-time vs batch, SLA requirements
+   - Multi-tenancy: isolation needs, compliance
+   - Constraints: cost budget, existing systems
+
+2. HIGH-LEVEL ARCHITECTURE
+   - Sketch: gateway -> service -> model -> data stores
+   - Components: inference service, feature store, monitoring
+   - Multi-region: regional deployments, data locality
+
+3. DEEP DIVE KEY AREAS
+   - Scalability: autoscaling, load balancing, caching
+   - Reliability: HA, DR, circuit breakers, retries
+   - Observability: metrics, logs, traces, alerting
+   - Security: auth/authz, encryption, isolation
+
+4. TRADE-OFFS
+   - KServe vs custom service
+   - SageMaker vs EKS self-managed
+   - Spot vs on-demand
+   - Model size vs latency vs cost
+
+=== COMMON TECHNICAL QUESTIONS - QUICK ANSWERS ===
+
+Q: How do you handle model version rollback?
+A: GitOps with ArgoCD - revert Git commit triggers automatic deployment of previous version. Also keep last-known-good model artifacts in S3 with version tags.
+
+Q: How to detect model drift?
+A: Monitor prediction distribution changes (KL divergence), input data statistics, compare accuracy on validation set over time. Alert if metrics deviate beyond threshold.
+
+Q: GPU cost optimization strategies?
+A: Autoscaling to zero, spot instances, FP16 quantization, batching, right-sized instances, Savings Plans for baseline.
+
+Q: Multi-tenant data isolation?
+A: Account-scoped API calls with JWT, separate namespaces if needed, network policies, RBAC, audit logs per tenant.
+
+Q: Observability for ML services?
+A: Prometheus metrics (latency, error rate, prediction dist), structured logging (trace ID, account ID), OpenTelemetry traces, Grafana dashboards, Datadog APM.
+
+Q: Canary deployment for models?
+A: Argo Rollouts with progressive traffic: 5% -> 25% -> 50% -> 100%. Automated rollback on error rate > threshold or latency spike.
+
+Q: Kubernetes security best practices?
+A: Pod Security Standards (restricted), RBAC with least privilege, network policies, image scanning, secrets via AWS Secrets Manager, IRSA for AWS access.
+
+Q: How to scale ML inference?
+A: HPA on QPS/latency, dynamic batching, GPU node autoscaling with Karpenter, load balancing across replicas, caching frequent requests.
+
+=== QUESTIONS TO ASK JAKUB ===
+
+About Observability:
+• "What are the biggest observability challenges you face with multi-region, multi-tenant services?"
+• "How does your team handle high-cardinality metrics at monday.com's scale?"
+• "What's your approach to alerting - how do you balance signal vs noise?"
+
+About ML Infrastructure:
+• "What's the current state of ML model deployment at monday.com? Any pain points?"
+• "How do you balance build vs buy for ML infrastructure tools?"
+• "What's the on-call experience like for production ML services?"
+
+About Security & Compliance:
+• "Given your CKS certification, what Kubernetes security practices are non-negotiable at monday.com?"
+• "How do you ensure ML models maintain data isolation across tenants?"
+• "What's the disaster recovery strategy for ML services?"
+
+About Team & Culture:
+• "How does the Observability team collaborate with AI/ML engineers?"
+• "What does success look like for this role in the first 6 months?"
+• "What excites you most about AI/ML at monday.com right now?"
+
+=== BEHAVIORAL STAR EXAMPLES - KEY POINTS ===
+
+SITUATION: Production ML service latency spike
+TASK: Restore SLO within 30 minutes
+ACTION: Checked metrics -> identified batch size issue -> scaled GPU nodes -> rolled back model -> implemented auto-rollback
+RESULT: Restored p99 latency from 3s to 500ms in 20 min, prevented customer impact
+
+SITUATION: Research team had high-accuracy model but slow (2s latency)
+TASK: Make it production-ready with <500ms latency
+ACTION: Profiled model -> applied FP16 quantization -> optimized tokenization -> added batching -> GPU acceleration
+RESULT: Reduced latency to 300ms, 5% accuracy drop acceptable, deployed successfully
+
+SITUATION: GPU costs skyrocketing ($50K/month)
+TASK: Cut costs by 50% without impacting performance
+ACTION: Implemented autoscaling to zero, added spot instances, negotiated Savings Plan, optimized batch sizes
+RESULT: Reduced costs to $23K/month (54% savings), maintained SLAs
+
+SITUATION: Security audit found ML service vulnerabilities
+TASK: Harden infrastructure to pass audit
+ACTION: Added image scanning, implemented RBAC, enabled network policies, integrated Secrets Manager, added audit logging
+RESULT: Passed audit, zero critical findings, became template for other services
+
+=== 15-MINUTE CODING PREP ===
+
+Focus Areas:
+• Dynamic batching implementation (asyncio.Queue)
+• API design (FastAPI/Flask with validation)
+• Metrics collection (Prometheus client)
+• Retry logic with exponential backoff
+• Simple model wrapper with caching
+• Feature flag routing logic
+• Health check endpoints
+
+Key Python patterns:
+• async/await for concurrency
+• Context managers for resources
+• Decorators for instrumentation
+• Type hints for clarity
+• Error handling with specific exceptions
+
+=== FINAL REMINDERS ===
+
+✓ Think aloud during system design - show your reasoning
+✓ Ask clarifying questions - shows you understand complexity
+✓ Mention trade-offs - every decision has pros/cons
+✓ Reference monday.com's stack when relevant
+✓ Emphasize observability, security, and cost
+✓ Be honest about what you don't know
+✓ Show enthusiasm for both ML and infrastructure
+✓ Tailor examples to multi-tenant SaaS context
+✓ Prepare 2-3 questions for Jakub
+✓ Practice coding in browser (CoderPad simulation)
+
+Good luck! You've got this! 🚀

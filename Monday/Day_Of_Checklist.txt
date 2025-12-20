@@ -1,0 +1,488 @@
+MONDAY.COM MLOPS INTERVIEW - DAY-OF CHECKLIST & TIMELINE
+
+================================================================================
+PRE-INTERVIEW PREPARATION (1-2 DAYS BEFORE)
+================================================================================
+
+TECHNICAL REVIEW:
+□ Re-read Research Summary focusing on:
+  - monday.com's multi-region architecture
+  - Their observability stack (Datadog, Prometheus, Grafana)
+  - AI features (AI Sidekick, AI Blocks, MCP)
+  - Tech stack (EKS, ArgoCD, Terraform)
+
+□ Review Quick Reference Cheat Sheet
+  - Key talking points
+  - Common technical questions
+  - Questions for Jakub
+
+□ Practice coding challenges
+  - Dynamic batching
+  - Circuit breaker
+  - Metrics collection
+  - Run through 2-3 problems on CoderPad or similar
+
+□ Review system design frameworks
+  - Multi-tenant considerations
+  - Kubernetes patterns
+  - Cost optimization strategies
+
+□ Review STAR behavioral stories
+  - Pick 4-5 strongest stories
+  - Practice telling them out loud (2-3 min each)
+  - Time yourself
+
+LOGISTICS:
+□ Test your internet connection
+□ Ensure webcam and microphone work
+□ Test screen sharing
+□ Charge laptop fully (have charger nearby)
+□ Find quiet location with good lighting
+□ Set up second monitor if available (for notes/diagrams)
+□ Silence phone and notifications
+□ Close unnecessary browser tabs
+□ Have water nearby
+
+MATERIALS TO HAVE READY:
+□ Copy of your resume
+□ Job description
+□ Quick Reference Cheat Sheet (printed or on second screen)
+□ Blank paper and pen for notes/diagrams
+□ Questions prepared for Jakub (3-5 questions)
+
+MENTAL PREPARATION:
+□ Get good sleep (7-8 hours)
+□ Light exercise in the morning
+□ Eat a good meal 1-2 hours before
+□ Review your accomplishments to boost confidence
+□ Set intention: "I'm here to have a conversation, not an interrogation"
+
+================================================================================
+INTERVIEW DAY - MORNING OF
+================================================================================
+
+2 HOURS BEFORE:
+□ Light breakfast/lunch (avoid heavy food that makes you sluggish)
+□ Quick 30-minute review of cheat sheet
+□ Don't cram - you know this stuff!
+□ Do light stretching or quick walk
+
+1 HOUR BEFORE:
+□ Set up interview space
+□ Close all unnecessary programs
+□ Open only: Zoom/Meet, blank document for notes, second tab for coding if needed
+□ Test camera/audio one more time
+□ Use bathroom
+□ Fill water glass
+□ Set phone to silent
+□ Put "Do Not Disturb" sign if in shared space
+
+30 MINUTES BEFORE:
+□ Review your top 3 stories
+□ Review questions for Jakub
+□ Do breathing exercises (4-7-8 technique: breathe in 4 sec, hold 7 sec, out 8 sec)
+□ Smile (it affects your tone even on video calls)
+□ Remind yourself of your strengths
+
+10 MINUTES BEFORE:
+□ Join meeting 2-3 minutes early (but not more than 5)
+□ Have your resume visible
+□ Have pen and paper ready
+□ Take 3 deep breaths
+□ RELAX - you've prepared well
+
+================================================================================
+INTERVIEW STRUCTURE & TIMELINE (60-90 MINUTES TYPICAL)
+================================================================================
+
+SEGMENT 1: INTRODUCTIONS (5-10 minutes)
+---------------------------------------
+WHAT TO EXPECT:
+- Jakub introduces himself and his role
+- He explains the interview format
+- Asks you to introduce yourself
+
+YOUR APPROACH:
+✓ Keep intro concise (2 minutes max)
+✓ Structure: Current role → Relevant experience → Why monday.com
+✓ Example: "I'm a Senior MLOps Engineer at [Company] where I build and 
+  maintain ML infrastructure serving 10M+ daily users. I have 5+ years 
+  experience deploying models on Kubernetes, with strong focus on 
+  observability and cost optimization. I'm excited about monday.com because 
+  of your multi-region architecture and AI-first product strategy."
+
+✓ Show energy and enthusiasm
+✓ Make eye contact (look at camera)
+✓ Listen carefully to format explanation
+✓ Ask clarifying questions if needed
+
+NOTES TO TAKE:
+- Jakub's specific role/team details
+- Interview segments and timing
+- Any specific topics he mentions
+
+================================================================================
+
+SEGMENT 2: SYSTEM DESIGN (30-40 minutes)
+---------------------------------------
+WHAT TO EXPECT:
+- Real engineering challenge (likely ML infrastructure focused)
+- Examples: "Design a multi-tenant model serving platform" or "How would you 
+  implement observability for ML services at scale?"
+- May be open-ended or have specific constraints
+
+YOUR APPROACH:
+
+STEP 1: CLARIFY (3-5 minutes)
+✓ ASK QUESTIONS before jumping in:
+  - "What's the expected scale? QPS, number of models, data volume?"
+  - "What are the latency requirements?"
+  - "Is this multi-tenant? Any data isolation requirements?"
+  - "What's the existing infrastructure? Are we on AWS, K8s, etc.?"
+  - "Any constraints? Budget, timeline, existing tools to integrate with?"
+  - "What are the key success criteria?"
+
+✓ Restate the problem in your own words
+✓ Get confirmation you understand correctly
+
+STEP 2: HIGH-LEVEL DESIGN (5-10 minutes)
+✓ Start with a diagram (use drawing tool or describe verbally)
+✓ Sketch main components:
+  - Entry point (API Gateway, Load Balancer)
+  - Core service (inference service, feature store)
+  - Data layer (caching, storage)
+  - Observability (metrics, logs, traces)
+  - Supporting services (auth, rate limiting)
+
+✓ Explain the data flow
+✓ Mention key technologies
+✓ Check in: "Does this high-level approach make sense?"
+
+STEP 3: DEEP DIVE (15-20 minutes)
+Jakub will likely drill into specific areas. Be ready to discuss:
+
+For Kubernetes (his expertise):
+- Pod autoscaling (HPA, VPA, custom metrics)
+- Node autoscaling (Cluster Autoscaler, Karpenter)
+- Resource requests/limits
+- GPU scheduling and node selectors
+- Multi-tenancy and isolation
+- Security (NetworkPolicies, RBAC, Pod Security)
+
+For Observability (his team focus):
+- Metrics: what to track, how to collect (Prometheus, Datadog)
+- Logging: structured logs, log aggregation
+- Tracing: distributed tracing for ML pipelines
+- Alerting: what triggers alerts, escalation
+- Dashboards: key visualizations
+
+For ML-specific:
+- Model versioning and rollback
+- Canary deployments
+- Feature stores and caching
+- Cost optimization (GPU utilization, spot instances)
+- Drift detection and monitoring
+
+TIPS:
+✓ Think out loud - show your reasoning
+✓ Mention trade-offs for each decision
+✓ Reference monday.com's context when relevant
+✓ Say "I don't know but here's how I'd figure it out" if stuck
+✓ Draw diagrams even if you're not artistic
+✓ Ask "Would you like me to go deeper on any part?"
+
+STEP 4: HANDLE EDGE CASES (5 minutes)
+✓ Discuss failure scenarios
+✓ Talk about monitoring and alerts
+✓ Mention DR and backup strategies
+✓ Scale considerations (10x traffic)
+
+COMMON MISTAKES TO AVOID:
+✗ Jumping straight to solution without clarifying
+✗ Going too deep into one area without covering breadth first
+✗ Not considering trade-offs
+✗ Ignoring cost, security, or observability
+✗ Not checking if interviewer is following
+✗ Being too rigid - adapt based on feedback
+
+================================================================================
+
+SEGMENT 3: CODING CHALLENGE (15 minutes)
+---------------------------------------
+WHAT TO EXPECT:
+- CoderPad or similar environment
+- Python problem (MLOps focused)
+- Examples: API endpoint, batch processing, metrics collection, retry logic
+- Time pressure (must work quickly but correctly)
+
+YOUR APPROACH:
+
+MINUTE 0-2: UNDERSTAND
+✓ Read problem carefully
+✓ Ask clarifying questions:
+  - "What should happen if input is invalid?"
+  - "Any specific error handling requirements?"
+  - "Should I focus on correctness or optimization?"
+  - "Any libraries I can use?"
+✓ State your approach before coding
+
+MINUTE 2-12: CODE
+✓ Start with function signature and type hints
+✓ Write clean, readable code
+✓ Use meaningful variable names
+✓ Add brief comments for complex logic
+✓ Handle edge cases
+✓ Think about error handling
+
+EXAMPLE STRUCTURE:
+```python
+def batch_inference(requests: List[Request]) -> List[Response]:
+    """
+    Process a batch of inference requests.
+    
+    Args:
+        requests: List of inference requests
+    
+    Returns:
+        List of responses in same order
+    """
+    # Validate inputs
+    if not requests:
+        return []
+    
+    # Your logic here
+    
+    # Handle errors
+    
+    # Return results
+```
+
+MINUTE 12-15: TEST & EXPLAIN
+✓ Walk through your code
+✓ Test with example input
+✓ Discuss time/space complexity
+✓ Mention potential improvements if you had more time
+
+TIPS:
+✓ Talk through your thought process
+✓ If stuck, say what you're thinking
+✓ Use helper functions to keep code organized
+✓ Don't panic if you make a mistake - just fix it
+✓ Focus on working code first, optimize if time permits
+
+COMMON MISTAKES TO AVOID:
+✗ Silence while coding (keep talking!)
+✗ Trying to write perfect code (working code first)
+✗ Not testing your solution
+✗ Ignoring edge cases
+✗ Forgetting to import necessary libraries
+✗ Not asking clarifying questions
+
+================================================================================
+
+SEGMENT 4: BEHAVIORAL QUESTIONS (15-20 minutes)
+---------------------------------------
+WHAT TO EXPECT:
+- 3-5 behavioral questions
+- Mix of technical situations and soft skills
+- Common areas: incidents, collaboration, conflict, ownership
+
+LIKELY QUESTIONS:
+- "Tell me about a time you dealt with a production outage"
+- "Describe a situation where you had to collaborate with data scientists"
+- "Tell me about a time you had to make a cost optimization decision"
+- "Describe a technical disagreement you had and how you resolved it"
+- "Tell me about a time you failed and what you learned"
+
+YOUR APPROACH:
+✓ Use STAR method (Situation, Task, Action, Result)
+✓ Keep each story to 2-3 minutes
+✓ Be specific with metrics and details
+✓ Show ownership and learning
+✓ Connect to monday.com's context where possible
+
+TIPS:
+✓ Listen to the full question before answering
+✓ Pick a relevant story that highlights strengths
+✓ If you don't have exact experience, pick closest story
+✓ Be honest if you haven't faced that specific situation
+✓ Ask for clarification if question is ambiguous
+
+COMMON QUESTIONS MAPPED TO YOUR STORIES:
+- Production incident → Story 1 or 2
+- Collaboration → Story 3 or 4
+- Cost optimization → Story 5 or 6
+- Leadership/ownership → Story 7
+- Failure → Story 8
+- Initiative → Story 9
+
+================================================================================
+
+SEGMENT 5: YOUR QUESTIONS FOR JAKUB (5-10 minutes)
+---------------------------------------
+WHAT TO EXPECT:
+- "Do you have any questions for me?"
+- This is important - shows your interest and preparation
+- Should be thoughtful, not generic
+
+YOUR PREPARED QUESTIONS (pick 3-5):
+
+ABOUT THE ROLE:
+1. "What does success look like for this role in the first 6 months?"
+2. "What are the biggest ML infrastructure challenges you're facing right now?"
+3. "How does the on-call rotation work for ML services?"
+
+ABOUT THE TEAM:
+4. "How does the Observability team collaborate with AI/ML engineers?"
+5. "What's the team structure? Who would I work most closely with?"
+6. "What's the culture like in the engineering org?"
+
+TECHNICAL/JAKUB-SPECIFIC:
+7. "I read about monday.com's multi-region architecture - what are the biggest 
+    observability challenges with that setup?"
+8. "Given your Kubernetes security background, what are the non-negotiables for 
+    ML deployments at monday.com?"
+9. "How do you balance build vs buy for ML infrastructure tools?"
+
+ABOUT MONDAY.COM:
+10. "What excites you most about the AI/ML initiatives at monday.com?"
+11. "How does monday.com approach ML model governance and compliance?"
+12. "What's the roadmap for AI features this year?"
+
+TIPS:
+✓ Ask questions you genuinely want answered
+✓ Listen actively to his responses
+✓ Ask follow-up questions naturally
+✓ Show enthusiasm
+✓ Take notes if he shares important info
+
+DON'T ASK:
+✗ Things easily found on website (company mission, product basics)
+✗ Compensation/benefits (save for recruiter)
+✗ Vacation policy
+✗ Work from home policy (unless not already discussed)
+✗ "Do you like working here?" (too generic)
+
+================================================================================
+
+SEGMENT 6: WRAP-UP (2-3 minutes)
+---------------------------------------
+WHAT TO EXPECT:
+- Jakub explains next steps
+- Timeline for decision
+- May ask if you have final thoughts
+
+YOUR APPROACH:
+✓ Thank him for his time
+✓ Express continued interest:
+  "Thank you for the deep dive into the role. I'm even more excited about 
+  the opportunity to work on monday.com's ML infrastructure, especially 
+  [mention something specific from the conversation]."
+✓ Ask about timeline: "What are the next steps in the process?"
+✓ Ask about communication: "What's the best way to follow up if I have 
+  additional questions?"
+✓ Professional goodbye
+
+================================================================================
+IMMEDIATELY AFTER INTERVIEW (WITHIN 1 HOUR)
+================================================================================
+
+□ Take 5 minutes to decompress (you did it!)
+□ While still fresh, write down:
+  - Key points discussed
+  - Questions you answered well
+  - Questions you struggled with
+  - Interesting things Jakub mentioned
+  - Action items (if any)
+
+□ Send thank-you email within 24 hours:
+
+TEMPLATE:
+---
+Subject: Thank you - MLOps Interview
+
+Hi Jakub,
+
+Thank you for taking the time to speak with me today about the ML/AI 
+Infrastructure Engineer role at monday.com. I really enjoyed our discussion 
+about [specific topic - e.g., "multi-region observability challenges and the 
+ClickHouse approach"].
+
+Our conversation reinforced my excitement about the opportunity to contribute 
+to monday.com's ML infrastructure, particularly [mention specific area that 
+resonated - e.g., "building reliable model deployment pipelines that integrate 
+with your existing Kubernetes and observability stack"].
+
+I'm impressed by [specific thing about company/team - e.g., "the team's focus 
+on both innovation and reliability, and the investment in internal tooling 
+like Sphera and Ensemble"].
+
+Please don't hesitate to reach out if you need any additional information. 
+I look forward to hearing about next steps.
+
+Best regards,
+[Your Name]
+---
+
+□ Update your interview tracker
+□ Reflect on learnings for future interviews
+
+================================================================================
+FINAL REMINDERS - READ RIGHT BEFORE INTERVIEW
+================================================================================
+
+MINDSET:
+✓ This is a conversation, not an interrogation
+✓ They want you to succeed (hiring is hard!)
+✓ You have valuable skills and experience
+✓ Be yourself - authenticity matters
+✓ It's okay to pause and think
+✓ It's okay to say "I don't know, but here's how I'd approach it"
+
+COMMUNICATION:
+✓ Speak clearly and at moderate pace
+✓ Make eye contact (look at camera)
+✓ Smile and show enthusiasm
+✓ Listen actively
+✓ Ask clarifying questions
+✓ Think out loud during problem solving
+
+TECHNICAL:
+✓ You know Kubernetes, observability, and MLOps
+✓ You've prepared thoroughly
+✓ Reference monday.com's stack when relevant
+✓ Focus on trade-offs and practical solutions
+✓ Show both depth and breadth
+
+BEHAVIORAL:
+✓ You have strong stories demonstrating impact
+✓ Use STAR method
+✓ Be specific with metrics
+✓ Show ownership and learning
+✓ Connect to the role
+
+IF YOU GET NERVOUS:
+✓ Take a breath
+✓ Drink some water
+✓ It's okay to ask for a moment to think
+✓ Remember: you're evaluating them too
+✓ One interview doesn't define you
+
+================================================================================
+
+YOU'VE GOT THIS! 🚀
+
+You've prepared thoroughly:
+✅ Deep research on monday.com
+✅ Strong technical foundation
+✅ Practiced coding challenges
+✅ Prepared behavioral stories
+✅ Thoughtful questions ready
+
+Go show Jakub what you can bring to monday.com's ML infrastructure!
+
+Remember: Confidence, clarity, and curiosity.
+
+Good luck! 🌟
+
+================================================================================
