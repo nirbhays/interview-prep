@@ -1,0 +1,13 @@
+Here’s what to expect in the interview:
+
+System Design Brainstorm: We’ll present a real engineering challenge similar to what we face daily. You’ll be asked to design a scalable system.
+Coding Task: There will be a 15-minute coding exercise conducted on Coderpad to assess your coding skills.
+
+5+ years of experience as an ML/AI Engineer, MLOps, Infrastructure Engineer, or DevOps with ML focus.
+Proven experience deploying and maintaining machine learning models in production at scale.
+Hands-on expertise in hosting, deploying, and managing the infrastructure of ML models, ensuring they are production-grade, scalable, and reliable.
+Strong knowledge of CI/CD pipelines, observability, testing, and rollback strategies.
+Hands-on expertise with cloud infrastructure (AWS preferred), GPUs, and containerized services.
+Experience with cost monitoring and optimization for large-scale ML systems.
+Comfort working with data scientists and ML engineers, translating research into robust services.
+Bonus: Experience with fine-tuning models, managing training data, and balancing performance vs. cost trade-offs.
