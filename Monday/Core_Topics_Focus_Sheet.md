@@ -5,6 +5,28 @@
 
 ## ⚡ TOP 10 MOST LIKELY QUESTIONS
 
+---
+
+## 🧩 SYSTEM DESIGN BRAINSTORM (15 monday.com-style prompts)
+
+Use these to practice the exact interview format: clarify requirements, estimate scale, propose architecture, call out multi-tenancy/isolation, and end with monitoring + rollback.
+
+1. **Design a multi-tenant ML inference platform** to serve recommendations and NLP features across ~250K customers (SLA, cost, isolation).
+2. **Design an AI Blocks execution platform** (categorize/summarize/translate/sentiment) that plugs into workflows and scales safely across workspaces.
+3. **Design a “Summarize updates” feature**: permission-aware summarization for an item’s updates with caching, rate limiting, and fallbacks.
+4. **Design an automation-template recommender**: suggest automations based on board schema + usage patterns (online + batch hybrid).
+5. **Design a Project Risk Analyzer system** that flags at-risk projects with explainability, monitoring, and retraining triggers.
+6. **Design a Resource Optimizer** that recommends assignees based on workload/skills/availability while avoiding bias and privacy issues.
+7. **Design semantic search over boards** (100M+ items scale): indexing, vector search, freshness, and multi-tenant access control.
+8. **Design near-real-time anomaly detection** for unusual activity patterns in workspaces (streaming pipeline + alerting).
+9. **Design a feature store** that supports online inference (<10ms) and offline training with point-in-time correctness and tenant partitioning.
+10. **Design an A/B testing + canary rollout framework for models** (traffic splitting, guardrails, auto-rollback).
+11. **Design model lifecycle management at scale**: registry, approvals, validation gates, and reproducible training across many models.
+12. **Design observability for ML services**: SLIs/SLOs, drift detection, data quality checks, and business-metric monitoring.
+13. **Design a cost optimization strategy for GPU-heavy inference**: batching, caching, autoscaling, spot/reserved mix, and cost per prediction.
+14. **Design a resilient external-LLM integration layer** (for summarization/translation): circuit breakers, retries, timeouts, and privacy controls.
+15. **Design a platform API–aware data extraction layer**: reads/writes via monday GraphQL API with pagination, complexity budgeting, and version pinning.
+
 ### 1. SYSTEM DESIGN: "Design an ML recommendation system for Monday.com users"
 **Key Points:**
 - Multi-tenant isolation (separate data per customer)
@@ -12,7 +34,7 @@
 - Model serving (real-time API + batch processing)
 - A/B testing framework
 - Monitoring (prediction quality, latency, drift)
-- Scale: 150K+ customers, millions of users
+- Scale: ~250K+ customers, millions of users
 
 **Architecture:**
 ```
